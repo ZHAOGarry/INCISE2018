@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Foreign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row container">
+    <div class="col">
+        <div class="row">
+            <div class="col-12">
+                <h2>Pay the Registration Fees</h2>
+                <h5>Foreign experts pay the registration fee in this page.</h5>
+                <hr />
+            </div>
+            <div class="col-12">
+                <h4>PayPal</h4>
+                <p>
+                    <strong>Beneficiary's Account</strong><br />
+                    wankang88@163.com<br />
+                    SHENZHEN MILLIONKONG  INTERNATIONAL TRAVEL SERVICE CO.,LTD
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 d-none d-lg-block border-left">
+        <h4 class="m-2">Directory</h4>
+        <ul class="nav nav-pills flex-column p-0">
+            <li class="nav-item">
+                @Html.ActionLink("> Registration Page", "Index", null, new { @class = "nav-link text-secondary" })
+            </li>
+        </ul>
+    </div>
+</div>

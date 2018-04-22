@@ -1,22 +1,33 @@
 ﻿@using Microsoft.AspNet.Identity
+@using INCISE2018_MVC.Managers
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("你好，" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
-    </ul>
+        <ul class="nav">
+            <li>
+                @{
+                    PermissionManager pm = new PermissionManager();
+                    if (pm.IsAdmin(User.Identity.Name))
+                    {
+                        @Html.ActionLink("Console", "Console", "Abstract", routeValues: null, htmlAttributes: new { @class = "nav-link text-light" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("MyAbstract", "MyAbstract", "Abstract", routeValues: null, htmlAttributes: new { @class = "nav-link text-light" })
+
+                    }
+                }
+            </li>
+            <li><a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">LogOff</a></li>
+        </ul>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("注册", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <ul class="nav">
+        <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link text-light" })</li>
     </ul>
 }

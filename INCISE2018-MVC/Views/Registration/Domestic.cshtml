@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Domestic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row container">
+    <div class="col">
+        <div class="row">
+            <div class="col-12">
+                <h2>Pay the Registration Fees</h2>
+                <h5>Domestic experts pay the registration fee in this page.</h5>
+                <hr />
+            </div>
+            <div class="col-12">
+                <h4>银行转账付款</h4>
+                <header>南方科技大学银行账户信息如下，请转账并备注付款单位名称及交费事项。</header>
+                <p>
+                    <strong>户名：</strong>南方科技大学<br />
+                    <strong>开户银行：</strong>中信银行深圳分行营业部<br />
+                    <strong>银行账户：</strong>8110 3010 1320 0282 614<br />
+                </p>
+                <hr />
+            </div>
+            <div class="col-12">
+                <h4>微信扫码支付</h4>
+                <header>请扫描下方二维码进行支付，因微信扫描支付无法进行备注，请支付完后<a href="mailto:incise2018@sustc.edu.cn">发送</a><strong>付款页面截图</strong>及<strong>付款单位名称</strong>以便对账使用。</header>
+                <div>
+                    <br />
+                    <img src="~/Content/Images/wx.jpg" width="300" />
+                </div>
+                <p>发送邮箱：<a href="mailto:incise2018@sustc.edu.cn">incise2018@sustc.edu.cn</a></p>
+                <hr />
+            </div>
+            <div class="col-12">
+                <h4>发票开具</h4>
+                <p>学校可开具增值税普通发票及电子版增值税普通发票。</p>
+                <p>需要开票的单位请缴费成功后发送付款截图，开票单位抬头，纳税人识别号至<a href="mailto:incise2018@sustc.edu.cn">incise2018@sustc.edu.cn</a>。并注明是否开具电子发票。</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 d-none d-lg-block border-left">
+        <h4 class="m-2">Directory</h4>
+        <ul class="nav nav-pills flex-column p-0">
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="#s1">银行转账付款</a>
+                <a class="nav-link text-secondary" href="#s2">微信扫码支付</a>
+                <a class="nav-link text-secondary" href="#s3">发票开具</a>
+                @Html.ActionLink("> Registration Page", "Index", null, new { @class = "nav-link text-secondary" })
+            </li>
+        </ul>
+    </div>
+</div>

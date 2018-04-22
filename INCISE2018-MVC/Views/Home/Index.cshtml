@@ -1,31 +1,150 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="container row">
+    <div class="col">
+        <div class="row">
+            <div class="col-12" id="section1">
+                <h3>Welcome to the 4th INCISE International Submarine Canyon Symposium!</h3>
+                <p>
+                    INCISE, the International Network for Submarine Canyon Investigation and Scientific Exchange
+                    is an initiative that aims to bring together scientists    working on all aspects of submarine
+                    canyon research, and to stimulate discussions across disciplines. The 2018 INCISE Symposium
+                    will take place in Shenzhen, Guangdong, China, from 5th to 7th November 2018. The event is
+                    hosted by the Department of Ocean Science & Engineering, a department of SUSTech that concentrates
+                    on exploring global oceans.
+                </p>
+                <p>
+                    <img src="~/Content/Images/After_Welcome.png" style="max-width:100%" />
+                </p>
+                <hr />
+            </div>
+            <div class="col-12" id="section2">
+                <h3>Why study submarine canyons?</h3>
+                <p>
+                    According to recent studies derived from high-resolution seafloor mapping, in the order of 10,000
+                    submarine canyons exist worldwide. Fewer than one hundred canyons (only 1%) have been studied with
+                    some level of detail in terms of geology, physical oceanography, or habitat heterogeneity and biodiversity.
+                </p>
+                <p>
+                    Submarine canyons are very important features along the world’s continental and island margins.
+                    They create terrain habitat heterogeneity and provide important pathways for terrestrial sediments
+                    and carbon, detrital organic matter, pollutants and marine debris from the shelf to the deep sea. Canyons
+                    often concentrate organic matter enhancing overall ecosystem biomass and fisheries and acting as biodiversity
+                    hotspots. Canyons are also conduits for destructive gravity flows that caused devastating geohazards.
+                </p>
+                <p>
+                    Recent advances in technology (e.g., ROVs, AUVs, gliders, etc.) allowed the expansion in the exploration
+                    of submarine canyons, revealing exuberant ecosystems with never-seen before life forms and entire habitats.
+                    However, while the scientific exploration on canyons advances, so does the human footprint into the deep sea,
+                    and on canyons in particular, with the increased worldwide demands for oil and gas, mineral deposits, and fisheries.
+                </p>
+                <p>
+                    Therefore, the scientific community has the responsibility to prepare a comprehensive assessment of the
+                    role submarine canyons in generating and maintaining deep-sea biodiversity, ecosystem function and services;
+                    and in support of developing marine policies defining clear strategies for conservation.
+                </p>
+                <hr />
+            </div>
+            <div class="col-12" id="section3">
+                <h3>Shenzhen in Autumn time!</h3>
+                <p>
+                    Shenzhen, whose nickname is PengCheng(city of roc), is one of the provincial cities of Guangdong province.
+                    It is west to the Daya and Dapeng Bays, farther east to the Pearl River Estuary and Lingdingyang, north to
+                    Hong Kong, and south of Dongguan and Huizhou.
+                </p>
+                <p>
+                    <img src="~/Content/Images/SZView.png" style="max-width:100%"/>
+                </p>
+                <p>
+                    Shenzhen is the first special economic zone of China, serving as a window for China’s reform and openness.
+                    Now, Shenzhen has developed into an international city with great influence, creating the”Shenzhen Speed” which attracts worldwide attention.
+                    The autumn scenery of Shenzhen is very beautiful,attracting a large number of tourists from all over the world to visit it every year.
+                </p>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Abstract</h4>
+                <p>
+                    In this part, you can find all abstracts submitted to the 2018 INCISE Symposium.
+                </p>
+                <p>
+                    <a class="btn btn-secondary" href="/Abstract">Learn more &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Programme</h4>
+                <p>
+                    Under this page, you can get the meeting plan of the 2018 INCISE Symposium.
+                </p>
+                <p>
+                    <a class="btn btn-secondary" href="/Home/Programme">Learn more &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p>
+                    If you have any problems, you can get in touch with us through this page.
+                </p>
+                <p>
+                    <a class="btn btn-secondary" href="/Home/Contact">Learn more &raquo;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 d-none d-lg-block border-left">
+        <h4 class="m-2">Directory</h4>
+        <ul class="nav nav-pills flex-column p-0">
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="#section1">Welcome to the 4th INCISE International Submarine Canyon Symposium!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="#section2">Why study submarine canyons?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="#section3">Shenzhen in Autumn time!</a>
+            </li>
+        </ul>
+    </div>
 </div>
-
-<div class="row">
+<div class="row p-4 mt-4 container rounded" style="background-color: #eeeeee">
+    <br />
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h3>Local Organizing Committee (SUSTech)</h3>
+        <p>John Y. Chen (陈永顺)</p>
+        <p>Chuanlun Zhang (张传伦)</p>
+        <p>Jingping Xu (徐景平)</p>
+        <p>Qingsong Liu (刘青松)</p>
+        <p>Xinxin Li (李芯芯)</p>
+        <p>Dujiao Guo (郭杜姣)</p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h3>Scientific Committee</h3>
+        <br />
+        <p><a href="#" target="_blank">Susan Allen (UBC)</a></p>
+        <p><a href="http://www.researchgate.net/profile/Jaime_Davies" target="_blank">Jaime Davies (UPL)</a></p>
+        <p><a href="https://www.uea.ac.uk/environmental-sciences/people/profile/robert-hall" target="_blank">Rob Hall (UEA)</a></p>
+        <p><a href="http://www.grida.no/about/staff.aspx?id=10216" target="_blank">Peter Harris (GRID-Arendal)</a></p>
+        <p><a href="http://noc.ac.uk/people/vaih" target="_blank">Veerle Huvenne (NOC)</a></p>
+        <p><a href="http://www.oceannetworks.ca/about-us/organization/staff/fabio-de-leo" target="_blank">Fabio De Leo (ONC)</a></p>
+        <p><a href="#" target="_blank">Daniel Leduc (NIWA)</a></p>
+        <p><a href="#" target="_blank">James Liu (NSYSU)</a></p>
+        <p><a href="http://www.researchgate.net/profile/Pere_Puig4" target="_blank">Pere Puig (ICM-CSIC)</a></p>
+        <p><a href="#" target="_blank">Jingping Xu (SUSTech)</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h3>INCISE Steering Committee</h3>
+        <p>Veerle Huvene (NOC)</p>
+        <p>Jamie Davies (UPL)</p>
+        <p>Joshu Mountjoy (NIWA)</p>
+        <p>Rob Hall (UEA)</p>
+        <p>Peter Harris (GRID-Arendal)</p>
+        <p>Nathalie Valette-Silver (NOAA)</p>
+        <p>Aaron Micallef (University of Malta)</p>
+        <p>Fabio De Leo (ONC)</p>
     </div>
 </div>

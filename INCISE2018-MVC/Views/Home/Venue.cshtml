@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Venue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row container">
+    <div class="col">
+        <div class="row">
+            <div class="col-12">
+                <h2>Venue</h2>
+                <h5>Venue Information</h5>
+                <hr />
+            </div>
+            <div class="col-12" id="s1">
+                <p>
+                    The 4th INCISE symposium will take place at Shenzhen's Kylin Villa. There are 388 guests rooms in total and
+                    they are classified in categories, such as Presidential suites, suites, single room, double room, and so on.
+                    The conference hall covers 200 square meters features modern design and can accommodate over 100 people for
+                    meeting. The unique outdoors tennis courts and swimming pool, and the facilities for leisure and fitness are
+                    ideal place for you to relax yourself and regain your energy after work.
+                </p>
+            </div>
+            <div class="col-12 mb-4">
+                <a href="http://www.kylinvilla.cn/en/about/aboutus.aspx">
+                    <img src="~/Content/Images/Kylin_Villa.png" style="width: 100%" />
+                </a>
+            </div>
+            <div class="col-12">
+                <p>
+                    Shenzhen Kylin Villa nestles at the foot of the Kylin Mountain in Nanshan District, Shenzhen and lying beside
+                    the beautiful Swan Lake. The villa covers 880,000 square meters, with construction area of 810,000 square meters,
+                    40, 000 square meters of water surface area, and 690,000 square meters. The greenery coverage rate is up to 96%.
+                    The villa enjoys convenient transportation environment, and the natural environment of the villa is marvellous.
+                    There are hills and lakes, and waterside pavilions are well deployed between them.
+                </p>
+            </div>
+            <div class="col-12 mb-4">
+                <img src="~/Content/Images/Cg-4WlKlZAuIfkmEABb-nNQ7lR4AAOOjQGAKx4AFv60506.jpg" style="max-width:100%" />
+            </div>
+            <div class="col-12">
+                If you wish to stay at the hotel, use the conference discounted rate (Single Room 798 RMB/night, Standard Room 728 RMB/night,
+                Suites Room 1880 RMB/night). However, the number of rooms is limited, please contact the
+                <button type="button" class="btn-link p-0 border-0" data-toggle="modal" data-target="#myModal">
+                    conference group
+                </button>
+                as soon as possible, we will book for you.
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Contact</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            @using (Html.BeginForm("ContactConferenceGroup", "Home", FormMethod.Post))
+                            {
+                                <div class="modal-body">
+                                    @{
+                                        if (!User.Identity.IsAuthenticated)
+                                        {
+                                            @:Please Login First
+                                        }
+                                        else
+                                        {
+                                            <div class="form-group">
+                                                <textarea runat="server" rows="10" class="form" style="width: 100%;" name="SendMessage"></textarea>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    @{
+                                        if (User.Identity.IsAuthenticated)
+                                        {
+                                            <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                        }
+                                    }
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <img src="~/Content/Images/20180319100803.png" style="max-width:100%" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 d-none d-lg-block border-left">
+        <h4 class="m-2">Directory</h4>
+        <ul class="nav nav-pills flex-column p-0">
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="#s1">Vennu Information</a>
+                <a class="nav-link text-secondary" href="http://www.kylinvilla.cn/en/about/aboutus.aspx">Visit Kylin Villa Website</a>
+                <a class="nav-link text-secondary" href="#" data-toggle="modal" data-target="#myModal">Contact the conference group</a>
+            </li>
+        </ul>
+    </div>
+</div>

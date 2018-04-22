@@ -55,12 +55,12 @@ namespace INCISE2018_MVC.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "已更改你的密码。"
-                : message == ManageMessageId.SetPasswordSuccess ? "已设置你的密码。"
-                : message == ManageMessageId.SetTwoFactorSuccess ? "已设置你的双重身份验证提供程序。"
-                : message == ManageMessageId.Error ? "出现错误。"
-                : message == ManageMessageId.AddPhoneSuccess ? "已添加你的电话号码。"
-                : message == ManageMessageId.RemovePhoneSuccess ? "已删除你的电话号码。"
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "You have set up your double authentication provider."
+                : message == ManageMessageId.Error ? "An error occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number has been added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number has been deleted."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -123,7 +123,7 @@ namespace INCISE2018_MVC.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "你的安全代码是: " + code
+                    Body = "Your security code is: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -190,7 +190,7 @@ namespace INCISE2018_MVC.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // 如果我们进行到这一步时某个地方出错，则重新显示表单
-            ModelState.AddModelError("", "无法验证电话号码");
+            ModelState.AddModelError("", "Unable to verify phone number.");
             return View(model);
         }
 
@@ -281,8 +281,8 @@ namespace INCISE2018_MVC.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "已删除外部登录名。"
-                : message == ManageMessageId.Error ? "出现错误。"
+                message == ManageMessageId.RemoveLoginSuccess ? "The external login name has been deleted."
+                : message == ManageMessageId.Error ? "There is an error"
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)

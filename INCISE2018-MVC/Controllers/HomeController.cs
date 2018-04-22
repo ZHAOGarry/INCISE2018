@@ -13,18 +13,33 @@ namespace INCISE2018_MVC.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Contact()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Programme()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        public ActionResult Travel_Accommodations()
+        {
+            return View();
+        }
+
+        public ActionResult Venue()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ContactConferenceGroup(FormCollection form)
+        {
+            string msg = form["SendMessage"];
+            string userMail = User.Identity.Name;
+            //向老师邮箱发送内容
+            return RedirectToAction("Venue");
         }
     }
 }

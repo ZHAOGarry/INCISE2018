@@ -27,54 +27,54 @@ namespace INCISE2018_MVC.Models
 
     public class SetPasswordViewModel
     {
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(100, ErrorMessage = "{0} must contains {2} words.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "新密码")]
+        [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "确认新密码")]
-        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        [Display(Name = "Confirm New Password")]
+        [Compare("NewPassword", ErrorMessage = "The password does not match the confirmation password.")]
         public string ConfirmPassword { get; set; }
     }
 
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [DataType(DataType.Password)]
-        [Display(Name = "当前密码")]
+        [Display(Name = "Old Password")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(100, ErrorMessage = "{0} must contains {2} words.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "新密码")]
+        [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "确认新密码")]
-        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        [Display(Name = "Confirm New Password")]
+        [Compare("NewPassword", ErrorMessage = "The password does not match the confirmation password.")]
         public string ConfirmPassword { get; set; }
     }
 
     public class AddPhoneNumberViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [Phone]
-        [Display(Name = "电话号码")]
+        [Display(Name = "Phone Number")]
         public string Number { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel
     {
-        [Required]
-        [Display(Name = "代码")]
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [Phone]
-        [Display(Name = "电话号码")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
     }
 

@@ -5,8 +5,8 @@ namespace INCISE2018_MVC.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "电子邮件")]
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 
@@ -25,15 +25,15 @@ namespace INCISE2018_MVC.Models
 
     public class VerifyCodeViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         public string Provider { get; set; }
 
-        [Required]
-        [Display(Name = "代码")]
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "记住此浏览器?")]
+        [Display(Name = "Remember this Browser?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -41,62 +41,62 @@ namespace INCISE2018_MVC.Models
 
     public class ForgotViewModel
     {
-        [Required]
-        [Display(Name = "电子邮件")]
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "电子邮件")]
-        [EmailAddress]
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "E-Mail")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [DataType(DataType.Password)]
-        [Display(Name = "密码")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "记住我?")]
+        [Display(Name = "Remember Me?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "电子邮件")]
+        [Required(ErrorMessage = "This field is required.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(100, ErrorMessage = "{0} must contains {2} words.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "密码")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "确认密码")]
-        [Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "The password does not match the confirmation password.")]
         public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "电子邮件")]
+        [Required(ErrorMessage = "This field is required.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(100, ErrorMessage = "{0} must contains {2} words.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "密码")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "确认密码")]
-        [Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "The password does not match the confirmation password.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -104,9 +104,9 @@ namespace INCISE2018_MVC.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "电子邮件")]
+        [Required(ErrorMessage = "This field is required.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 }

@@ -1,17 +1,26 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="row container">
+    <div class="col mx-auto">
+        <h2 class="text-center">Contact</h2>
+        <p class="text-center">Any requests please get in touch:<a href="mailto:incise2018@sustc.edu.cn">incise2018@sustc.edu.cn</a></p>
+        <hr />
+        <div class="text-center" style="text-align:right">
+            <a href="http://www.incisenet.org/">
+                <img src="~/Content/Images/INCISE.jpg" style="width:300px;" />
+            </a>
+        </div>
+        <br />
+        <div class="text-center">
+            <a href="https://sustc.edu.cn">
+                <img src="~/Content/Images/sustc_logo_color_1.jpg" style="width:auto;height:73px" />
+            </a>
+        </div>
+    </div>
+</div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+

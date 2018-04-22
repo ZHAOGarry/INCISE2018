@@ -1,40 +1,54 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    <title>@ViewBag.Title - INCISE 2018</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
     <div class="container body-content">
+        <div class="mb-5">
+            <div class="jumbotron mb-0" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px">
+                <h1>4th INCISE International Submarine Canyon Symposium</h1>
+                <p class="lead">5-7 November 2018 Shenzhen, Guangdong China</p>
+            </div>
+            <nav class="nav bg-dark rounded-bottom">
+                <ul class="nav mr-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Abstract", "Index", "Abstract", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Programme", "Programme", "Home", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Travel&Accommodations", "Travel_Accommodations", "Home", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Venue", "Venue", "Home", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Registration", "Index", "Registration", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link text-light" })
+                    </li>
+                </ul>
+                <ul class="nav">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </nav>
+        </div>
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - INCISE 2018</p>
         </footer>
     </div>
 
