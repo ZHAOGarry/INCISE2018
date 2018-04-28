@@ -1,8 +1,102 @@
-﻿
+﻿@model INCISE2018_MVC.Models.ConsoleViewModel
+
+@using INCISE2018_MVC.Models
+
 @{
     ViewBag.Title = "Console";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Console</h2>
+<div class="container">
+    <h2>Abstract Console</h2>
+    <h5>You can manage all the abstracts here.</h5>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.AlertType))
+    {
+        string str = ViewBag.AlertType;
+        <div class="alert alert-@str.ToLower() alert-dismissable fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @ViewBag.AlertContent
+        </div>
+    }
+    <hr />
+    <h3>Reviewing List</h3>
+    <p class="text-danger">Only the latest version will be displayed when the user commits the changes several times.</p>
+    <table class="table table-bordered table-hover">
+        <thead class="table-secondary">
+            <tr>
+                <th>Status</th>
+                <th>Version</th>
+                <th>Author</th>
+                <th>Co-author(s)</th>
+                <th>Abstract Title</th>
+                <th>Abstract Body</th>
+                <th>INCISE Theme</th>
+                <th>Presentation Type</th>
+                <th>Keywords</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AbstractModel item in Model.WaitList)
+            {
+                <tr>
+                    <td>@Html.Partial("_StatusBadge", item)</td>
+                    <td>@item.GroupId-@item.Id</td>
+                    <td>@item.Author</td>
+                    <td>@item.CoAuthors</td>
+                    <td>@item.AbstarctTitle</td>
+                    <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@item.Id">(Preview)</a></td>
+                    <td>@item.INCISETheme</td>
+                    <td>@item.PresentationType</td>
+                    <td>@item.KeyWords</td>
+                    <td>
+                        @Html.ActionLink("View", "Detail", "Abstract", new { Id = item.Id }, new { @class = "text-secondary" }) |
+                        @Html.ActionLink("Pass", "Pass", "Abstract", new { Id = item.Id, GroupId=item.GroupId }, new { @class = "text-success" }) |
+                        @Html.ActionLink("Reject", "Reject", "Abstract", new { Id = item.Id, GroupId = item.GroupId }, new { @class = "text-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+    <h3>Display List</h3>
+    <table class="table table-bordered table-hover">
+        <thead class="table-secondary">
+            <tr>
+                <th>Status</th>
+                <th>Version</th>
+                <th>Author</th>
+                <th>Co-author(s)</th>
+                <th>Abstract Title</th>
+                <th>Abstract Body</th>
+                <th>INCISE Theme</th>
+                <th>Presentation Type</th>
+                <th>Keywords</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AbstractModel item in Model.ShowList)
+            {
+                <tr>
+                    <td>@Html.Partial("_StatusBadge", item)</td>
+                    <td>@item.GroupId-@item.Id</td>
+                    <td>@item.Author</td>
+                    <td>@item.CoAuthors</td>
+                    <td>@item.AbstarctTitle</td>
+                    <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@item.Id">(Preview)</a></td>
+                    <td>@item.INCISETheme</td>
+                    <td>@item.PresentationType</td>
+                    <td>@item.KeyWords</td>
+                    <td>
+                        @Html.ActionLink("View", "Detail", "Abstract", new { Id = item.Id }, new { @class = "text-secondary" }) |
+                        @Html.ActionLink("Delete", "Delete", "Abstract", new { Id = item.Id, GroupId = item.GroupId }, new { @class = "text-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
 

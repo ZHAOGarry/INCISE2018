@@ -47,7 +47,7 @@ namespace INCISE2018_MVC.Managers
         /// <summary>
         /// 发送邮件
         /// </summary>
-        public async Task Send()
+        public async Task SendAsync()
         {
             MailAddress FromAddress = new MailAddress(SendUserAddress, DisplayName);
             MailAddress ToAddress = new MailAddress(ReciveUserAddress);
@@ -73,6 +73,36 @@ namespace INCISE2018_MVC.Managers
                 catch (SmtpException e)
                 {
                     return;
+                }
+            }
+        }
+
+        public bool Send()
+        {
+            MailAddress FromAddress = new MailAddress(SendUserAddress, DisplayName);
+            MailAddress ToAddress = new MailAddress(ReciveUserAddress);
+            MailMessage Mail = new MailMessage(FromAddress, ToAddress);
+            Mail.Subject = MailTitle;
+            Mail.IsBodyHtml = UseHtml;
+            Mail.Body = MailContent;
+            using (SmtpClient client = new SmtpClient())
+            {
+                client.Host = Host;
+                client.UseDefaultCredentials = false;
+                if (Port != 0)
+                {
+                    client.Port = Port;
+                }
+                client.Credentials = new NetworkCredential(SendUserName, SendUserPassword);
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                try
+                {
+                    client.Send(Mail);
+                    return true;
+                }
+                catch (SmtpException e)
+                {
+                    return false;
                 }
             }
         }

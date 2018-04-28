@@ -10,6 +10,22 @@
             <div class="col-12">
                 <h2>Venue</h2>
                 <h5>Venue Information</h5>
+                @{
+                    if (ViewBag.SendSuccessFlag == true)
+                    {
+                        <div class="alert alert-success alert-dismissable fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Success!</strong> The email has been sent.
+                        </div>
+                    }
+                    else if (ViewBag.SendSuccessFlag == false)
+                    {
+                        <div class="alert alert-danger alert-dismissable fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Failure!</strong> Please contact us by incise2018@mail.sustc.edu.cn
+                        </div>
+                    }
+                }
                 <hr />
             </div>
             <div class="col-12" id="s1">

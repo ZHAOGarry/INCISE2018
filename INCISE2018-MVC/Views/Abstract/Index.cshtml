@@ -1,8 +1,65 @@
-﻿
+﻿@model INCISE2018_MVC.Models.AbstractViewModel
+
+@using INCISE2018_MVC.Models;
 @{
     ViewBag.Title = "Abstract";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<div class="container">
+    <h2>Abstract</h2>
+    <h5>You can find all abstracts submitted to the 2018 INCISE Symposium here.</h5>
+    <hr />
+    <table class="table table-bordered table-hover ">
+        <thead class="table-secondary">
+            <tr>
+                <th>Author</th>
+                <th>Co-author(s)</th>
+                <th>Abstract Title</th>
+                <th>Abstract Body</th>
+                <th>INCISE Theme</th>
+                <th>Presentation Type</th>
+                <th>Keywords</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-striped">
+            @{
+                foreach (AbstractModel i in Model.AbstarctList)
+                {
+                    <tr>
+                        <td>@i.Author</td>
+                        <td>@i.CoAuthors</td>
+                        <td>@i.AbstarctTitle</td>
+                        <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@i.Id">(Preview)</a></td>
+                        <td>@i.INCISETheme</td>
+                        <td>@i.PresentationType</td>
+                        <td>@i.KeyWords</td>
+                        <td>@Html.ActionLink("View","Detail","Abstract",new { Id=i.Id },new { @class= "text-secondary" })</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @{
+        foreach (AbstractModel i in Model.AbstarctList)
+        {
+            <div class="modal fade" id="Modal_@i.Id">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Preview</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            @i.AbstarctBody
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

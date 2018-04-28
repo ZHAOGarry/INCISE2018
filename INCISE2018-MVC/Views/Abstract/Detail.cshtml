@@ -1,0 +1,85 @@
+﻿@model INCISE2018_MVC.Models.AbstractModel
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>View Abstract</h2>
+    <h5>This is the detail of <span class="text-primary">@Model.AbstarctTitle</span></h5>
+    <p class="text-secondary">
+        <span class="mr-4"><a href="javascript:window.history.back();" class="text-secondary">&lt; Back to List</a></span>
+        <span class="mr-4">Version: @Model.GroupId:@Model.Id </span>
+        <span class="mr-4">
+            Status:
+            @Html.Partial("_StatusBadge", Model)
+        </span>
+        <span class="mr-4">
+            Edit Time: @Model.EditTime
+        </span>
+    </p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoAuthors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoAuthors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbstarctTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AbstarctTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbstarctBody)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AbstarctBody)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INCISETheme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INCISETheme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PresentationType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PresentationType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeyWords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeyWords)
+        </dd>
+
+    </dl>
+    <p>
+        <span class="mr-4"><a href="javascript:window.history.back();" class="text-secondary">&lt; Back to List</a></span>
+    </p>
+
+</div>

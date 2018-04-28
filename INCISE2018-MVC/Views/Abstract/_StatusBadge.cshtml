@@ -1,0 +1,27 @@
+﻿@model INCISE2018_MVC.Models.AbstractModel
+
+<span>
+    @{
+        switch (Model.Statement)
+        {
+            case INCISE2018_MVC.Models.State.Saved:
+                <span class="badge badge-secondary">Saved</span>
+                break;
+            case INCISE2018_MVC.Models.State.Auditing:
+                <span class="badge badge-info">Reviewing </span>
+                break;
+            case INCISE2018_MVC.Models.State.Fail:
+                <span class="badge badge-danger">Fail</span>
+                break;
+            case INCISE2018_MVC.Models.State.Approved:
+                <span class="badge badge-success">Approved</span>
+                break;
+            case INCISE2018_MVC.Models.State.Withdraw:
+                <span class="badge badge-warning">Withdraw</span>
+                break;
+            case INCISE2018_MVC.Models.State.Old:
+                <span class="badge badge-dark">Old</span>
+                break;
+        }
+    }
+</span>

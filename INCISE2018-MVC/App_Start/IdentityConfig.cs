@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using INCISE2018_MVC.Models;
+using INCISE2018_MVC.Managers;
 
 namespace INCISE2018_MVC
 {
@@ -18,8 +19,12 @@ namespace INCISE2018_MVC
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // 在此处插入电子邮件服务可发送电子邮件。
-            return Task.FromResult(0);
+            MailManager manager = new MailManager();
+            manager.MailTitle = message.Subject;
+            manager.MailContent = message.Body;
+            manager.ReciveUserAddress = message.Destination;
+            var result = manager.SendAsync();
+            return result;
         }
     }
 

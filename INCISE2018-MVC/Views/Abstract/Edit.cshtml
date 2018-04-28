@@ -1,0 +1,116 @@
+﻿@model INCISE2018_MVC.Models.AbstractModel
+
+@using INCISE2018_MVC.Models
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row container">
+    <div class="col mx-auto">
+        <h2>Edit Abstract</h2>
+        <h5>Edit my abstracts here.</h5>
+        <hr />
+        <div class="row form-horizontal" style="width:100%">
+            @using (Html.BeginForm("Edit", "Abstract", FormMethod.Post, new { @style = "width:100%" }))
+            {
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.AbstarctTitle, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.AbstarctTitle, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                        @Html.ValidationMessageFor(model => model.AbstarctTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.Author, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                        @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.CoAuthors, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.CoAuthors, htmlAttributes: new { @class = "form-control", @style = "max-width:none" })
+                        @Html.ValidationMessageFor(model => model.CoAuthors, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.AbstarctBody, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.AbstarctBody, htmlAttributes: new { @class = "form-control", @style = "max-width:none", @rows = "15" })
+                        @Html.ValidationMessageFor(model => model.AbstarctBody, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.INCISETheme, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.INCISETheme, ViewBag.ThemeOptions as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @style = "max-width:none" })
+                        @Html.ValidationMessageFor(model => model.INCISETheme, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.PresentationType, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.PresentationType, ViewBag.PreOptions as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @style = "max-width:none" })
+                        @Html.ValidationMessageFor(model => model.PresentationType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    @Html.LabelFor(model => model.KeyWords, htmlAttributes: new { @style = "width:100%" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.KeyWords, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none" } })
+                        @Html.ValidationMessageFor(model => model.KeyWords, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.GroupId);
+
+                <div class="form-group">
+                    <div class="col-12">
+                        <input type="submit" value="Edit" class="btn btn-outline-primary btn-block" style="max-width:none" />
+                    </div>
+                </div>
+
+                <br />
+                <a href="javascript:window.history.back();" class="text-secondary">&lt; Back to List</a>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-3 d-none d-lg-block border-left">
+        <h4 class="m-2">Notice</h4>
+        <ul class="nav nav-pills flex-column p-0">
+            <li>
+                <p class="text-secondary">
+                    Please remember submit the abstract after edit.
+                </p>
+            </li>
+        </ul>
+        <h4 class="m-2">Previous versions</h4>
+        <ul class="nav nav-pills flex-column p-0">
+            @foreach (EditBrief item in ViewBag.List)
+            {
+                AbstractModel tempmodel = new AbstractModel()
+                {
+                    Statement = item.Statement
+                };
+                if (item.Id == Model.Id)
+                {
+            <li class="text-danger">[Edit] @Html.Partial("_StatusBadge", tempmodel) @Model.GroupId-@item.Id @item.EditDate</li>
+                }
+                else
+                {
+                    <li>
+                        <a class="text-secondary" href="/Abstract/Edit/@item.Id">@Html.Partial("_StatusBadge", tempmodel) @Model.GroupId-@item.Id @item.EditDate</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
