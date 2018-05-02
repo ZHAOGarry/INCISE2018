@@ -12,9 +12,9 @@
 <body>
     <div class="container body-content">
         <div class="mb-5">
-            <div class="jumbotron mb-0" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;background:url(/Content/Images/JB-Background.jpg)">
-                <h1>4th INCISE International Submarine Canyon Symposium</h1>
-                <p class="lead">5-7 November 2018 Shenzhen, Guangdong China</p>
+            <div class="jumbotron mb-0" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;background:url(/Content/Images/JB-Background.jpg);background-repeat:no-repeat;background-position:right bottom;;background-size:cover">
+                <h1><strong>4th INCISE International Submarine Canyon Symposium</strong></h1>
+                <p style="font-size:1.75rem">5-7 November 2018, Shenzhen, CHINA</p>
             </div>
             <nav class="nav bg-dark rounded-bottom">
                 <ul class="nav mr-auto">
@@ -35,6 +35,9 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Registration", "Index", "Registration", null, new { @class = "nav-link text-light" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Sponsors", "Sponsors", "Home", null, new { @class = "nav-link text-light" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link text-light" })

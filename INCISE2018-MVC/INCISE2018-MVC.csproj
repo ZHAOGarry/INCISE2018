@@ -202,11 +202,13 @@
     <Compile Include="Managers\AbstractManager.cs" />
     <Compile Include="Managers\MailManager.cs" />
     <Compile Include="Managers\PermissionManager.cs" />
+    <Compile Include="Managers\RegistrationManager.cs" />
     <Compile Include="Managers\SqlDbConnection.cs" />
     <Compile Include="Models\AbstractViewModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RegistrationViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -342,6 +344,8 @@
     <Content Include="Views\Abstract\_StatusBadge.cshtml" />
     <Content Include="Views\Abstract\New.cshtml" />
     <Content Include="Views\Abstract\Edit.cshtml" />
+    <Content Include="Views\Registration\Result.cshtml" />
+    <Content Include="Views\Home\Sponsors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

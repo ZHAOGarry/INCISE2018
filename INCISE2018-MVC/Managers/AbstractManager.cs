@@ -52,10 +52,20 @@ namespace INCISE2018_MVC.Managers
 
         public AbstractModel GetItemById(int id, string userName)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            string sql = "";
+            // 当前用户为管理员时
+            PermissionManager permission = new PermissionManager();
+            if (permission.IsAdmin(userName))
             {
-                conn.Open();
-                string sql = "select t2.*,t3.UserName from " +
+                sql = "select t2.*,t3.UserName from " +
+                    "(select max(Id) as Id from AbstractNodes group by GroupId) as t1 " +
+                    "left join AbstractNodes as t2 on t1.Id = t2.Id " +
+                    "left join AbstractGroups as t3 on t2.GroupId = t3.GroupId " +
+                    "where t2.Id=@p1 ;";
+            }
+            else
+            {
+                sql = "select t2.*,t3.UserName from " +
                     "(select max(Id) as Id from AbstractNodes group by GroupId) as t1 " +
                     "left join AbstractNodes as t2 on t1.Id = t2.Id " +
                     "left join AbstractGroups as t3 on t2.GroupId = t3.GroupId " +
@@ -63,6 +73,11 @@ namespace INCISE2018_MVC.Managers
                     "union select t4.*,t5.UserName from AbstractNodes as t4 " +
                     "left join AbstractGroups as t5 on t4.GroupId=t5.GroupId " +
                     "where t5.UserName = @p2 and t4.Id=@p1;";
+            }
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@p1", id);
                 cmd.Parameters.AddWithValue("@p2", userName);

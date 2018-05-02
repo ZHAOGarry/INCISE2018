@@ -1,4 +1,5 @@
-﻿
+﻿@model INCISE2018_MVC.Models.RegistrationViewModel
+
 @{
     ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -33,8 +34,50 @@
                 </table>
             </div>
             <div class="col-12" id="s3">
-                <p>* We will choose 20-25 outstanding students from the application students to attend the meeting and exempt the registration fee.</p>
+                <p>* The registration fee of the top 25 student applicants will be exempted.</p>
             </div>
+            <div class="col-12" id="s4">
+                <h4>3. Field Trip - Dapeng Peninsula National Geopark (深圳大鹏地质公园)</h4>
+                <p>
+                    At the registration, please indicate whether if you are interested in participating a day trip on
+                    November 8 to the Dapeng Peninsula National Geopark (深圳大鹏地质公园) located 75 km east of the city.
+                </p>
+                <div class="row rounded border m-4">
+                    @{
+                        if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="col-12 text-center">
+                                <h6 class="m-4">Please Login First</h6>
+                                <div class="mb-4">
+                                    @Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-outline-primary" })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            if (!Model.IsRegisted)
+                            {
+                                <div class="col-12 text-center">
+                                    <h6 class="m-4">I'd like to sign up for this field trip.</h6>
+                                    <div class="mb-4">
+                                        @Html.ActionLink("Sign Up for This Trip", "SignUp", "Registration", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-outline-primary" })
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12 text-center">
+                                    <h6 class="m-4">You have already signed up for this field trip.</h6>
+                                    <div class="mb-4">
+                                        @Html.ActionLink("Cancel This Trip", "Cancel", "Registration", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-outline-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="col-md-3 d-none d-lg-block border-left">
@@ -45,7 +88,7 @@
                 @Html.ActionLink("> Foreign Entrance", "Foreign", null, new { @class = "nav-link text-secondary" })
                 @Html.ActionLink("> Domestic Entrance", "Domestic", null, new { @class = "nav-link text-secondary" })
                 <a class="nav-link text-secondary" href="#s2">Early bird discount fees apply until September 30th.</a>
-                <a class="nav-link text-secondary" href="#s3">Remarks</a>
+                <a class="nav-link text-secondary" href="#s4">Early bird discount fees apply until September 30th.</a>
             </li>
         </ul>
     </div>

@@ -34,6 +34,11 @@ namespace INCISE2018_MVC.Controllers
             return View();
         }
 
+        public ActionResult Sponsors()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult ContactConferenceGroup(FormCollection form)
         {
@@ -41,7 +46,7 @@ namespace INCISE2018_MVC.Controllers
             string userMail = User.Identity.Name;
             MailManager mail = new MailManager();
             mail.MailTitle = "Contact from Venue Page";
-            mail.ReciveUserAddress = "garry@garrylabs.com";
+            mail.ReciveUserAddress = "incise2018@sustc.edu.cn";
             mail.UseHtml = true;
             mail.MailContent = "<div>You can reply by this address: " +
                 "<b style=\"\">"+userMail+"</b></div><div><font __editorwarp__=\"1\" style=\"display: inline; font-size: 14px; " +

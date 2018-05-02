@@ -1,0 +1,32 @@
+﻿@model INCISE2018_MVC.Models.ResultViewModel
+
+@using INCISE2018_MVC.Models;
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Field trip registration results.</h2>
+<h5>Update time: @DateTime.Now</h5>
+<hr />
+<p>The total number of registration:<strong>@Model.List.Count</strong></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>E-mail</th>
+            <th>Time signing up</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            foreach (TripSignUpDateModel item in Model.List)
+            {
+                <tr>
+                    <td>@item.Mail</td>
+                    <td>@item.SignUpDate</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

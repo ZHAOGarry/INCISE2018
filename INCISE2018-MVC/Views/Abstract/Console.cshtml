@@ -51,7 +51,7 @@
                     <td>@item.KeyWords</td>
                     <td>
                         @Html.ActionLink("View", "Detail", "Abstract", new { Id = item.Id }, new { @class = "text-secondary" }) |
-                        @Html.ActionLink("Pass", "Pass", "Abstract", new { Id = item.Id, GroupId=item.GroupId }, new { @class = "text-success" }) |
+                        @Html.ActionLink("Pass", "Pass", "Abstract", new { Id = item.Id, GroupId = item.GroupId }, new { @class = "text-success" }) |
                         @Html.ActionLink("Reject", "Reject", "Abstract", new { Id = item.Id, GroupId = item.GroupId }, new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -97,6 +97,47 @@
             }
         </tbody>
     </table>
-
+    @{
+        foreach (AbstractModel i in Model.WaitList)
+        {
+            <div class="modal fade" id="Modal_@i.Id">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Preview</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            @i.AbstarctBody
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        foreach (AbstractModel i in Model.ShowList)
+        {
+            <div class="modal fade" id="Modal_@i.Id">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Preview</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            @i.AbstarctBody
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <hr />
+    @Html.ActionLink("Field Trip Result", "Result","Registration")
 </div>
 
