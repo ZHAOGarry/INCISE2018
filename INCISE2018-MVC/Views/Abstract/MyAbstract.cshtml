@@ -1,6 +1,7 @@
 ﻿@model INCISE2018_MVC.Models.MyAbstractViewModel
 
 @using INCISE2018_MVC.Models
+@using INCISE2018_MVC.Managers
 
 @{
     ViewBag.Title = "MyAbstract";
@@ -19,121 +20,148 @@
 </script>
 
 <div class="container">
-    <h2>My Abstracts</h2>
-    <h5>Here is all the abstract you submitted.</h5>
-    @if (!string.IsNullOrWhiteSpace(ViewBag.AlertType))
-    {
-        string str = ViewBag.AlertType;
-        <div class="alert alert-@str.ToLower() alert-dismissable fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            @ViewBag.AlertContent
-        </div>
-    }
+    <h2>My Infomation</h2>
+    <h5>View and set my personal information</h5>
     <hr />
-    <table class="table table-bordered table-hover ">
-        <thead class="table-secondary">
-            <tr>
-                <th></th>
-                <th>Status</th>
-                <th>Version</th>
-                <th>Author</th>
-                <th>Co-author(s)</th>
-                <th>Abstract Title</th>
-                <th>Abstract Body</th>
-                <th>INCISE Theme</th>
-                <th>Presentation Type</th>
-                <th>Keywords</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody class="table-striped">
-            <tr>
-                <td colspan="11">
-                    @Html.ActionLink("+ New Abstract", "New", "Abstract", null, new { @class = "btn btn-link mx-auto w-100" })
-                </td>
-            </tr>
-        </tbody>
-        @foreach (AbstractModel key in Model.AbstractDictionary.Keys)
+    @{
+        UserInfoManager UIM = new UserInfoManager();
+        UserInfoNode infoNode = UIM.GetUserInfoNode(User.Identity.Name);
+        if (infoNode == null)
         {
-            <tbody class="table-striped">
-                <tr>
-                    <td><button id="showBtn_@key.Id" type="button" class="btn btn-link text-secondary p-0" data-toggle="collapse" data-target="#collapse_@key.GroupId" onclick="ShowBtnPress(this.id)">+</button></td>
-                    <td>@Html.Partial("_StatusBadge", key)</td>
-                    <td>@key.GroupId-@key.Id</td>
-                    <td>@key.Author</td>
-                    <td>@key.CoAuthors</td>
-                    <td>@key.AbstarctTitle</td>
-                    <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@key.Id">(Preview)</a></td>
-                    <td>@key.INCISETheme</td>
-                    <td>@key.PresentationType</td>
-                    <td>@key.KeyWords</td>
-                    <td>
-                        @Html.ActionLink("View", "Detail", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" }) |
-                        @Html.ActionLink("Edit", "Edit", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
-                        @if (key.Statement != State.Saved && key.Statement != State.Fail && key.Statement != State.Withdraw)
-                        {
-                            @: | @Html.ActionLink("Withdraw", "Withdraw", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
-                        }
-                        @if (key.Statement == State.Saved)
-                        {
-                            @: | @Html.ActionLink("Submit", "Submit", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
-                        }
-                    </td>
-                </tr>
-            </tbody>
-            <tbody class="table-striped collapse" id="collapse_@key.GroupId">
-                @foreach (AbstractModel value in Model.AbstractDictionary[key])
-                {
+            <div class="border-warning rounded my-4" style="border:dashed">
+                <h4 class="text-center mb-3 mt-5">Please Fill in Your Personal Information First</h4>
+                <p class="text-center ">
+                    These information is very important to us and we hope you can fill in it accurately
+                </p>
+                <p class="my-5 mx-5">
+                    @Html.ActionLink("GO", "MyInfomation", "Abstract", null, new { @class = "btn btn-outline-warning btn-block" })
+                </p>
+                <p class="small text-center text-warning mb-0 pb-1">
+                    Software functionality will be limited before your personal information is completed
+                </p>
+            </div>
+        }
+        else
+        {
+            <div>
+                <p>
+                    <strong>Name : </strong>@infoNode.FirstName @infoNode.LastName
+                </p>
+                <p>
+                    <strong>Institution : </strong>@infoNode.Institution
+                </p>
+                <p>
+                    <strong>Address : </strong>@infoNode.Address
+                </p>
+                <p>
+                    <strong>Student Type : </strong>@infoNode.StudentType
+                </p>
+                <p>
+                    @Html.ActionLink("Edit My Infomation", "MyInfomation","Abstract",null,new { @class= "btn btn-outline-secondary" })
+                </p>
+            </div>
+        }
+    }
+    @{
+        if (infoNode != null)
+        {
+            <br />
+            <h2>My Abstracts</h2>
+            <h5>Here is all the abstract you submitted.</h5>
+            if (!string.IsNullOrWhiteSpace(ViewBag.AlertType))
+            {
+                string str = ViewBag.AlertType;
+                <div class="alert alert-@str.ToLower() alert-dismissable fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    @ViewBag.AlertContent
+                </div>
+            }
+            <hr />
+            <table class="table table-bordered table-hover ">
+                <thead class="table-secondary">
                     <tr>
-                        <td></td>
-                        <td>@Html.Partial("_StatusBadge", value)</td>
-                        <td>@value.GroupId-@value.Id</td>
-                        <td>@value.Author</td>
-                        <td>@value.CoAuthors</td>
-                        <td>@value.AbstarctTitle</td>
-                        <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@value.Id">(Preview)</a></td>
-                        <td>@value.INCISETheme</td>
-                        <td>@value.PresentationType</td>
-                        <td>@value.KeyWords</td>
-                        <td>
-                            @Html.ActionLink("View", "Detail", "Abstract", new { Id = value.Id }, new { @class = "text-secondary" }) |
-                            @Html.ActionLink("Edit", "Edit", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
-                            @if (value.Statement != State.Saved && value.Statement != State.Fail && value.Statement != State.Withdraw)
-                            {
-                                @: | @Html.ActionLink("Withdraw", "Withdraw", "Abstract", new { Id = value.Id }, new { @class = "text-secondary" })
-                            }
-                            @if (value.Statement == State.Saved)
-                            {
-                                @: | @Html.ActionLink("Submit", "Submit", "Abstract", new { Id = value.Id }, new { @class = "text-secondary" })
-                            }
+                        <th></th>
+                        <th>Status</th>
+                        <th>Version</th>
+                        <th>Author</th>
+                        <th>Co-author(s)</th>
+                        <th>Abstract Title</th>
+                        <th>Abstract Body</th>
+                        <th>INCISE Theme</th>
+                        <th>Presentation Type</th>
+                        <th>Keywords</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                    <tr>
+                        <td colspan="11">
+                            @Html.ActionLink("+ New Abstract", "New", "Abstract", null, new { @class = "btn btn-link mx-auto w-100" })
                         </td>
                     </tr>
+                </tbody>
+                @foreach (AbstractModel key in Model.AbstractDictionary.Keys)
+                {
+                    <tbody class="table-striped">
+                        <tr>
+                            <td><button id="showBtn_@key.Id" type="button" class="btn btn-link text-secondary p-0" data-toggle="collapse" data-target="#collapse_@key.GroupId" onclick="ShowBtnPress(this.id)">+</button></td>
+                            <td>@Html.Partial("_StatusBadge", key)</td>
+                            <td>@key.GroupId-@key.Id</td>
+                            <td>@key.Author</td>
+                            <td>@key.CoAuthors</td>
+                            <td>@key.AbstarctTitle</td>
+                            <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@key.Id">(Preview)</a></td>
+                            <td>@key.INCISETheme</td>
+                            <td>@key.PresentationType</td>
+                            <td>@key.KeyWords</td>
+                            <td>
+                                @Html.ActionLink("View", "Detail", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" }) |
+                                @Html.ActionLink("Edit", "Edit", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
+                                @if (key.Statement != State.Saved && key.Statement != State.Fail && key.Statement != State.Withdraw)
+                                {
+                                    @: | @Html.ActionLink("Withdraw", "Withdraw", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
+                                }
+                                @if (key.Statement == State.Saved)
+                                {
+                                    @: | @Html.ActionLink("Submit", "Submit", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="table-striped collapse" id="collapse_@key.GroupId">
+                        @foreach (AbstractModel value in Model.AbstractDictionary[key])
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@Html.Partial("_StatusBadge", value)</td>
+                                <td>@value.GroupId-@value.Id</td>
+                                <td>@value.Author</td>
+                                <td>@value.CoAuthors</td>
+                                <td>@value.AbstarctTitle</td>
+                                <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@value.Id">(Preview)</a></td>
+                                <td>@value.INCISETheme</td>
+                                <td>@value.PresentationType</td>
+                                <td>@value.KeyWords</td>
+                                <td>
+                                    @Html.ActionLink("View", "Detail", "Abstract", new { Id = value.Id }, new { @class = "text-secondary" }) |
+                                    @Html.ActionLink("Edit", "Edit", "Abstract", new { Id = key.Id }, new { @class = "text-secondary" })
+                                    @if (value.Statement != State.Saved && value.Statement != State.Fail && value.Statement != State.Withdraw)
+                                    {
+                                        @: | @Html.ActionLink("Withdraw", "Withdraw", "Abstract", new { Id = value.Id }, new { @class = "text-secondary" })
+                                    }
+                                    @if (value.Statement == State.Saved)
+                                    {
+                                        @: | @Html.ActionLink("Submit", "Submit", "Abstract", new { Id = value.Id }, new { @class = "text-secondary" })
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 }
-            </tbody>
-        }
-    </table>
-    @{
-        foreach (AbstractModel key in Model.AbstractDictionary.Keys)
-        {
-            <div class="modal fade" id="Modal_@key.Id">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Preview</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            @key.AbstarctBody
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            foreach (AbstractModel i in Model.AbstractDictionary[key])
+            </table>
+            foreach (AbstractModel key in Model.AbstractDictionary.Keys)
             {
-                <div class="modal fade" id="Modal_@i.Id">
+                <div class="modal fade" id="Modal_@key.Id">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -141,7 +169,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div class="modal-body">
-                                @i.AbstarctBody
+                                @key.AbstarctBody
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -149,7 +177,27 @@
                         </div>
                     </div>
                 </div>
+                foreach (AbstractModel i in Model.AbstractDictionary[key])
+                {
+                    <div class="modal fade" id="Modal_@i.Id">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Preview</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    @i.AbstarctBody
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             }
         }
+
     }
 </div>

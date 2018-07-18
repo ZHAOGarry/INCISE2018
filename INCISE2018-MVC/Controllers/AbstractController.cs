@@ -358,5 +358,41 @@ namespace INCISE2018_MVC.Controllers
             }
             return model;
         }
+
+        [HttpGet]
+        public ActionResult MyInfomation()
+        {
+            UserInfoManager UIM = new UserInfoManager();
+            UserInfoNode model = UIM.GetUserInfoNode(User.Identity.Name);
+            var StudentOptions = new List<SelectListItem>
+            {
+                new SelectListItem{ Value="0",Text="-" },
+                new SelectListItem{ Value="1",Text="Undergraduate" },
+                new SelectListItem{ Value="2",Text="Master" },
+                new SelectListItem{ Value="3",Text="Doctor" }
+            };
+            ViewBag.StudentOptions = StudentOptions;
+            if (model == null)
+            {
+                model = new UserInfoNode();
+            }
+            return View(model);
+        }
+
+        public ActionResult SetInfo( UserInfoNode node )
+        {
+            UserInfoManager UIM = new UserInfoManager();
+            UserInfoNode model = UIM.GetUserInfoNode(User.Identity.Name);
+            node.Email = User.Identity.Name;
+            if(model == null)
+            {
+                UIM.SetUserInfo(node, true);
+            }
+            else
+            {
+                UIM.SetUserInfo(node, false);
+            }
+            return RedirectToAction("MyAbstract");
+        }
     }
 }

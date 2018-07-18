@@ -9,7 +9,10 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+@using INCISE2018_MVC.Managers;
 <body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     <div class="container body-content">
         <div class="mb-5">
             <div class="jumbotron mb-0" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;background:url(/Content/Images/JB-Background.jpg);background-repeat:no-repeat;background-position:right bottom;;background-size:cover">
@@ -53,10 +56,51 @@
         <footer class="text-center">
             <p>&copy; @DateTime.Now.Year - INCISE 2018</p>
         </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+                UserInfoManager UIM = new UserInfoManager();
+                PermissionManager pm = new PermissionManager();
+                if (UIM.GetUserInfoNode(User.Identity.Name) == null && !pm.IsAdmin(User.Identity.Name))
+                {
+                    <div class="modal fade" id="userInfoModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Notice</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <strong>
+                                            You have not filled in the necessary user information.
+                                        </strong>
+                                    </p>
+                                    <p class="small">
+                                        These information is very important to us and we hope you can fill in it accurately
+                                    </p>
+                                    <p class="mt-5 mb-4 mx-5">
+                                        @Html.ActionLink("GO","MyInfomation","Abstract",null,new { @class= "btn btn-outline-primary btn-block" })
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <p class="small">
+                                        This dialog box will show for each operation before you complete the necessary user information.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    if (!(Context.Request.RawUrl.Contains("MyAbstract")||Context.Request.RawUrl.Contains("MyInfomation")))
+                    {
+                        <script>$('#userInfoModal').modal('show');</script>
+                    }
+                }
+            }
+        }
+    </div>
     @RenderSection("scripts", required: false)
 </body>
 </html>

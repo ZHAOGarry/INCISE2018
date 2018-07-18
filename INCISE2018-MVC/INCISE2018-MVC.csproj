@@ -204,6 +204,7 @@
     <Compile Include="Managers\PermissionManager.cs" />
     <Compile Include="Managers\RegistrationManager.cs" />
     <Compile Include="Managers\SqlDbConnection.cs" />
+    <Compile Include="Managers\UserInfoManager.cs" />
     <Compile Include="Models\AbstractViewModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -346,6 +347,8 @@
     <Content Include="Views\Abstract\Edit.cshtml" />
     <Content Include="Views\Registration\Result.cshtml" />
     <Content Include="Views\Home\Sponsors.cshtml" />
+    <Content Include="Views\Abstract\MyInfomation.cshtml" />
+    <Content Include="Views\Abstract\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

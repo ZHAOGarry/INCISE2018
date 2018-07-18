@@ -1,0 +1,95 @@
+﻿@model INCISE2018_MVC.Managers.UserInfoNode
+@{
+    ViewBag.Title = "MyInfomation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Infomation</h2>
+<h5>You can fill or reset your personal infomation here</h5>
+<hr />
+@using (Html.BeginForm("SetInfo", "Abstract"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-8 row">
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none;" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none;" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 row">
+        <div class="col-md-12 form-group">
+            @Html.LabelFor(model => model.Institution, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Institution, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none;" } })
+                @Html.ValidationMessageFor(model => model.Institution, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 row">
+        <div class="col-md-12 form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @style = "max-width:none;" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group ml-3">
+        <label>
+            <input type="checkbox" id="isStudent" class="form-check-inline ml-3" onchange="SHstudent()">
+            I'm a student
+        </label>
+    </div>
+
+    <script>
+        function SHstudent() {
+            var state = $('#isStudent').prop('checked');
+            if (state == true) {
+                $("#stdtype").collapse('show');
+            } else {
+                $("#stdtype").collapse('hide');
+                $('#stdSelect').val(0);
+            }
+        }
+    </script>
+
+    <div class="col-md-8 row collapse" id="stdtype">
+        <div class="col-md-12 form-group" >
+            @Html.LabelFor(model => model.StudentType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownListFor(model => model.StudentType, ViewBag.StudentOptions as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @style = "max-width:none;",@id="stdSelect" })
+                @Html.ValidationMessageFor(model => model.StudentType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

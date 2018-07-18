@@ -13,14 +13,10 @@
                 <h5>Register for the INCISE2018 Symposium</h5>
                 <hr />
             </div>
+            <div class="col-12">
+                <h5>Note: Early bird discount fees apply until September 30th. Registration closes on October 25th.</h5>
+            </div>
             <div class="col-12" id="s1">
-                <h4>We are currently open for symposium registration. To register, you need to:</h4>
-                <br />
-                <h4>1. Pay the registration fees </h4>
-                <p>Foreign experts please pay the registration fee from @Html.ActionLink("this entrance", "Foreign").</p>
-                <p>Domestic experts please pay the registration fee from @Html.ActionLink("this entrance", "Domestic").</p>
-                <br />
-                <h4 id="s2">2.Early bird discount fees apply until September 30th. Registration closes on October 25th.</h4>
                 <table class="table table-bordered">
                     <thead>
                         <tr><th colspan="2" class="table-secondary">Registration Fees (include applicable taxes)</th></tr>
@@ -34,8 +30,86 @@
                 </table>
             </div>
             <div class="col-12" id="s3">
-                <p>* The registration fee of the top 25 student applicants will be exempted.</p>
+                <p>* A total of 25 seats will be reserved for students. They will be selected by the organizing committee based on the quality of the submitted abstracts (please remember to identify your student status on the abstract submission).</p>
+                <hr />
+                <h4>You may choose one of thses three methods of payment:</h4>
             </div>
+            <div class="col-12" id="ss1">
+                <h4>1. Bank Transfer</h4>
+                <p>
+                    Bank Name: CHINA CITIC BANK<br />
+                    Bank Address: IF., Excellence Times Square Phase 2, No.8 Zhongxin Road 3, Futian District, Shenzhen China<br />
+                    Swift code: CIBKCNBJ518<br />
+                    Account name：Southern University of Science and Technology<br />
+                    Account number: 8110 3010 1320 0282 614<br />
+                    * (Please have these remarks with your payment: INCISE2018, Your Name)<br />
+                </p>
+                <br />
+                <p>
+                    户名：南方科技大学<br />
+                    开户银行：中信银行深圳分行营业部<br />
+                    银行账户：8110 3010 1320 0282 614<br />
+                    * (请转账并备注姓名，付款单位名称及INCISE2018会议注册费)<br />
+                </p>
+                <hr />
+            </div>
+            @*<div class="col-12" id="ss2">
+                <h4>2. PayPal</h4>
+                <p>
+                    Account information:<br />
+                    wankang88@163.com<br />
+                    SHENZHEN MILLIONKONG INTERNATIONAL TRAVEL SERVICE CO.,LTD<br />
+                    * (Please have these remarks with your payment: INCISE2018, Your Name)<br />
+                </p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="wankang88@163.com">
+                    <input type="hidden" name="lc" value="GB">
+                    <input type="hidden" name="item_name" value="Symposium fees">
+                    <input type="hidden" name="button_subtype" value="services">
+                    <input type="hidden" name="no_note" value="0">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_SM.gif:NonHostedGuest">
+                    <table>
+                        <tr><td><input type="hidden" name="on0" value="Symposium fees">Symposium fees</td></tr>
+                        <tr>
+                            <td>
+                                <select name="os0">
+                                    <option value="Regular rate-early bird">Regular rate-early bird $ 300.00 USD</option>
+                                    <option value="Regular rate-full">Regular rate-full $ 400.00 USD</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="hidden" name="option_select0" value="Regular rate-early bird">
+                    <input type="hidden" name="option_amount0" value="300.00">
+                    <input type="hidden" name="option_select1" value="Regular rate-full">
+                    <input type="hidden" name="option_amount1" value="400.00">
+                    <input type="hidden" name="option_index" value="0">
+                    <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
+                </form>
+
+
+                <hr />
+            </div>*@
+            <div class="col-12" id="ss3">
+                <h4>2. WeChat 微信扫码支付</h4>
+                <header>请扫描下方二维码进行支付，因微信扫描支付无法进行备注，请支付完后<a href="mailto:incise2018@sustc.edu.cn">发送</a><strong>付款页面截图</strong>及<strong>付款单位名称</strong>以便对账使用。</header>
+                <div>
+                    <br />
+                    <img src="~/Content/Images/wx.jpg" width="300" />
+                </div>
+                <p>发送邮箱：<a href="mailto:incise2018@sustc.edu.cn">incise2018@sustc.edu.cn</a></p>
+                <hr />
+            </div>
+            <div class="col-12">
+                <h4>发票开具</h4>
+                <p>学校可开具增值税普通发票及电子版增值税普通发票。</p>
+                <p>需要开票的单位请缴费成功后发送付款截图，开票单位抬头，纳税人识别号至<a href="mailto:incise2018@sustc.edu.cn">incise2018@sustc.edu.cn</a>。并注明是否开具电子发票。</p>
+                <hr />
+            </div>
+
             <div class="col-12" id="s4">
                 <h4>3. Field Trip - Dapeng Peninsula National Geopark (深圳大鹏地质公园)</h4>
                 <p>
@@ -84,10 +158,10 @@
         <h4 class="m-2">Directory</h4>
         <ul class="nav nav-pills flex-column p-0">
             <li class="nav-item">
-                <a class="nav-link text-secondary" href="#s1">Pay the registration fees</a>
-                @Html.ActionLink("> Foreign Entrance", "Foreign", null, new { @class = "nav-link text-secondary" })
-                @Html.ActionLink("> Domestic Entrance", "Domestic", null, new { @class = "nav-link text-secondary" })
-                <a class="nav-link text-secondary" href="#s2">Early bird discount fees apply until September 30th.</a>
+                <a class="nav-link text-secondary" href="#s1">Registration Fees</a>
+                <a class="nav-link text-secondary" href="#ss1">Bank Transfer</a>
+                @*<a class="nav-link text-secondary" href="#ss2">PayPal</a>*@
+                <a class="nav-link text-secondary" href="#ss3">WeChat 微信扫码支付</a>
                 <a class="nav-link text-secondary" href="#s4">Early bird discount fees apply until September 30th.</a>
             </li>
         </ul>

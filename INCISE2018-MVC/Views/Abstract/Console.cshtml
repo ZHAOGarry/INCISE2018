@@ -1,6 +1,7 @@
 ﻿@model INCISE2018_MVC.Models.ConsoleViewModel
 
 @using INCISE2018_MVC.Models
+@using INCISE2018_MVC.Managers
 
 @{
     ViewBag.Title = "Console";
@@ -42,7 +43,10 @@
                 <tr>
                     <td>@Html.Partial("_StatusBadge", item)</td>
                     <td>@item.GroupId-@item.Id</td>
-                    <td>@item.Author</td>
+                    <td>
+                        @item.Author
+                        <p><a href="javascript:void(0);" data-toggle="modal" data-target="#waitSubmitte_@item.Id">(Submitter)</a></p>
+                    </td>
                     <td>@item.CoAuthors</td>
                     <td>@item.AbstarctTitle</td>
                     <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@item.Id">(Preview)</a></td>
@@ -58,7 +62,6 @@
             }
         </tbody>
     </table>
-
     <hr />
     <h3>Display List</h3>
     <table class="table table-bordered table-hover">
@@ -82,7 +85,10 @@
                 <tr>
                     <td>@Html.Partial("_StatusBadge", item)</td>
                     <td>@item.GroupId-@item.Id</td>
-                    <td>@item.Author</td>
+                    <td>
+                        @item.Author
+                        <p><a href="javascript:void(0);" data-toggle="modal" data-target="#showSubmitte_@item.Id">(Submitter)</a></p>
+                    </td>
                     <td>@item.CoAuthors</td>
                     <td>@item.AbstarctTitle</td>
                     <td><a href="javacript:void(0);" class="text-secondary" data-toggle="modal" data-target="#Modal_@item.Id">(Preview)</a></td>
@@ -136,8 +142,108 @@
                 </div>
             </div>
         }
+
+        foreach (AbstractModel item in Model.WaitList)
+        {
+            <div class="modal fade" id="waitSubmitte_@item.Id">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Submitter Infomation</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            @{
+                                UserInfoManager UIM = new UserInfoManager();
+                                UserInfoNode infoNode = UIM.GetUserInfoNode(item.Owner);
+                                if (infoNode == null)
+                                {
+                                    <p>
+                                        This user has not filled in the information
+                                    </p>
+                                    <p>
+                                        <strong>Email : </strong>@item.Owner
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        <strong>Email : </strong>@item.Owner
+                                    </p>
+                                    <p>
+                                        <strong>Name : </strong>@infoNode.FirstName @infoNode.LastName
+                                    </p>
+                                    <p>
+                                        <strong>Institution : </strong>@infoNode.Institution
+                                    </p>
+                                    <p>
+                                        <strong>Address : </strong>@infoNode.Address
+                                    </p>
+                                    <p>
+                                        <strong>Student Type : </strong>@infoNode.StudentType
+                                    </p>
+                                }
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        foreach (AbstractModel item in Model.ShowList)
+        {
+            <div class="modal fade" id="showSubmitte_@item.Id">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Submitter Infomation</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            @{
+                                UserInfoManager UIM = new UserInfoManager();
+                                UserInfoNode infoNode = UIM.GetUserInfoNode(item.Owner);
+                                if (infoNode == null)
+                                {
+                                    <p>
+                                        This user has not filled in the information
+                                    </p>
+                                    <p>
+                                        <strong>Email : </strong>@item.Owner
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        <strong>Email : </strong>@item.Owner
+                                    </p>
+                                    <p>
+                                        <strong>Name : </strong>@infoNode.FirstName @infoNode.LastName
+                                    </p>
+                                    <p>
+                                        <strong>Institution : </strong>@infoNode.Institution
+                                    </p>
+                                    <p>
+                                        <strong>Address : </strong>@infoNode.Address
+                                    </p>
+                                    <p>
+                                        <strong>Student Type : </strong>@infoNode.StudentType
+                                    </p>
+                                }
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     }
     <hr />
-    @Html.ActionLink("Field Trip Result", "Result","Registration")
+    @Html.ActionLink("Field Trip Result", "Result", "Registration")
 </div>
 
